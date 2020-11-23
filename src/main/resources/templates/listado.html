@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="utf-8">
+<title>Insert title here</title>
+</head>
+<body>
+ 
+   <ol>
+       <li th:each="vacante:${lista}" th:text="${vacante}"></li>
+   </ol>
+   <br>
+   <table border="1">
+     <thread>
+       <th>Vacante</th>
+     </thread>
+     <tbody>
+     <tr th:each="vacante:${lista}">
+     <td th:text="${vacante}"></td>
+     </tr>
+     </tbody>
+   </table>
+
+</body>
+</html>

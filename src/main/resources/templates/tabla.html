@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="utf-8">
+<title>Lista de vacantes</title>
+
+<link th:href="@{/bootstrap/css/bootstrap.css}" rel="stylesheet">
+<script th:src="@{/bootstrap/js/bootstrap.js}"></script>
+
+</head>
+<body>
+  <img th:src="@{/images/casette.png}" width="120" height="120">
+  
+  
+   <h2 class="text-primary text-center">Lista de vacantes</h2>
+   <table class="table table-bordered table-over">
+   
+      <thead class="thead-dark">
+         <tr>
+            <th>id</th>
+            <th>Logo</th>
+            <th>Nombre</th>
+            <th>Descripción</th>
+            <th>Salario</th>
+            <th>Fecha</th>
+            <th>Destacado</th>
+            <th>Detalle</th>
+            <th>Eliminar</th>
+         </tr>
+      </thead>
+      <tbody>
+         <tr th:each="v:${vacantes}">
+            <td th:text="${v.id}"></td>
+            <td><img th:src="@{/images/{img}(img=${v.imagen})}" width="100" height="100"></td>
+            <td th:text="${v.nombre}"></td>
+            <td th:text="${v.descripcion}"></td>
+            <td th:text="${v.salario}"></td>
+            <td th:text="${#calendars.format(v.fecha, 'dd-MM-yyyy')}"></td>
+           <!-- <td th:text="${v.destacado}"></td> 
+           <td th:text="${v.destacado == 1}?'Si' : 'No'"></td> -->
+           
+           <td>
+             <span th:if="${v.destacado == 1}" class="badge badge-pill badge-info">Si</span>
+             <span th:unless="${v.destacado == 1}" class="badge badge-pill badge-danger">No</span>
+           </td>
+           
+           <td>
+              <a class="btn btn-secondary"
+              th:href="@{/view/vacantes/vista/{id} (id=${v.id})}"
+              ><small></small>Ver Detalle</small></a>
+           </td>
+           
+           <td>
+             <a class="btn btn-danger"
+             th:href="@{/view/vacantes/eliminar(id=${v.id})}"
+             ><small>Eliminar</small></a>
+           </td>
+           
+         </tr>
+      </tbody>
+   </table>
+
+</body>
+</html>
